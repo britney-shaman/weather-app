@@ -1,0 +1,28 @@
+body {
+  background-color: #f5f7fa;
+}
+
+.degree:after {
+  content: "°C";
+  position: absolute;
+  font-size: 3rem;
+  margin-top: 0.4rem;
+  font-weight: 400;
+}
+.celciusFahrenheit {
+  font-size: 27px;
+}
+a.celciusLink {
+  text-decoration: none;
+  color: black;
+}
+a.celciusLink:hover {
+  font-weight: bolder;
+}
+form {
+  margin-bottom: 9px;
+}
+ul {
+  list-style: none;
+  margin-left: -32px;
+}

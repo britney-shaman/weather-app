@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <title>Weather App 2</title>
+  </head>
+  <body>
+    <div class="container">
+      <section class="mx-auto my-5" style="max-width: 40rem">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title font-weight-bold" id="heading">
+              Please Search A City...
+            </h3>
+            <form id="city-name">
+              <div class="row">
+                <div class="col-6">
+                  <input
+                    type="search"
+                    placeholder="Change city..."
+                    class="form-control"
+                    id="user-input"
+                  />
+                </div>
+                <div class="col-3">
+                  <input
+                    type="submit"
+                    value="Search"
+                    class="form-control btn btn-primary w-100"
+                    id="search-button"
+                  />
+                </div>
+                <div class="col-3">
+                  <input
+                    type="submit"
+                    value="Current"
+                    class="form-control btn btn-success w-100"
+                    id="current-button"
+                  />
+                </div>
+              </div>
+            </form>
+            <div id="current-date">Monday March 12 2022</div>
+            <div class="d-flex justify-content-between">
+              <p class="display-1">
+                <span class="celciusValue" id="temp-display">Temp</span>
+                <span class="celciusFahrenheit"
+                  ><a href="" class="celciusLink">°C |</a
+                  ><a href="" class="fahrenheitLink">°F</a></span
+                >
+              </p>
+              <i class="fas fa-sun-o fa-5x pt-3 text-warning"></i>
+            </div>
+            <div class="d-flex justify-content-between mb-4">
+              <p>
+                <i class="fas fa-tint fa-lg text-info pe-2"></i>Feels like
+                <span id="feels-like">Temp</span>°C
+              </p>
+              <p>
+                <i class="fas fa-leaf fa-lg text-muted pe-2"></i
+                ><span id="wind-speed">Wind Speed </span> km/h Winds
+              </p>
+            </div>
+            <div id="description">Description</div>
+            <hr />
+
+            <table class="table table-borderless table-sm mb-0">
+              <tbody>
+                <tr>
+                  <td class="font-weight-normal align-middle">Tuesday</td>
+                  <td class="float-end font-weight-normal">
+                    <p class="mb-1">24&deg;</p>
+                  </td>
+                  <td class="float-end me-3">
+                    <i class="fas fa-sun fa-lg text-warning"></i>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-weight-normal align-middle">Wednesday</td>
+                  <td class="float-end font-weight-normal">
+                    <p class="mb-1">19&deg;</p>
+                  </td>
+                  <td class="float-end me-3">
+                    <i class="fas fa-cloud-sun-rain fa-lg text-info"></i>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-weight-normal align-middle">Thursday</td>
+                  <td class="float-end font-weight-normal">
+                    <p class="mb-1">23&deg;</p>
+                  </td>
+                  <td class="float-end me-3">
+                    <i class="fas fa-sun fa-lg text-warning"></i>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-weight-normal align-middle">Friday</td>
+                  <td class="float-end font-weight-normal">
+                    <p class="mb-1">26&deg;</p>
+                  </td>
+                  <td class="float-end me-3">
+                    <i class="fas fa-sun fa-lg text-warning"></i>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-weight-normal align-middle">Saturday</td>
+                  <td class="float-end font-weight-normal">
+                    <p class="mb-1">20&deg;</p>
+                  </td>
+                  <td class="float-end me-3">
+                    <i class="fas fa-cloud fa-lg text-info"></i>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-weight-normal align-middle">Sunday</td>
+                  <td class="float-end font-weight-normal">
+                    <p class="mb-1">22&deg;</p>
+                  </td>
+                  <td class="float-end me-3">
+                    <i class="fas fa-cloud-sun fa-lg text-info"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+  <script src="src/script.js"></script>
+</html>
