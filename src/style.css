@@ -26,3 +26,6 @@ ul {
   list-style: none;
   margin-left: -32px;
 }
+.link-to-code {
+  text-align: center;
+}
