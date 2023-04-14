@@ -2,15 +2,22 @@
 let fahrenheit = document.querySelector(".fahrenheitLink");
 function celciusFahrenheit(event) {
   event.preventDefault();
-  let celciusValue = document.querySelector(".celciusValue");
-  let celciusTemp = celciusValue.innerHTML;
-  let fahrenheitValue = celciusTemp * (9 / 5) + 32;
-  let showFahrenheit = Math.round(fahrenheitValue);
-  celciusValue.innerHTML = showFahrenheit;
+  fahrenheitTemperature = Math.round(celciusTemperature * (9 / 5) + 32);
+  document.querySelector("#temp-display").innerHTML = fahrenheitTemperature;
 }
 
 //Call the function when the fahrenheit symbol is clicked
 fahrenheit.addEventListener("click", celciusFahrenheit);
+
+//Create a function that changes the fahrenheit temperature back to celcuis
+let celcius = document.querySelector(".celciusLink");
+function fahrenheitCelcius(event) {
+  event.preventDefault();
+  document.querySelector("#temp-display").innerHTML = celciusTemperature;
+}
+
+//Call the function when the celcuis symbol is clicked
+celcius.addEventListener("click", fahrenheitCelcius);
 
 //Create a function that takes the input from the search bar and replaces the heading with that value
 function changeCity(event) {
@@ -53,6 +60,7 @@ function showTemperature(location) {
   document.querySelector("#current-date").innerHTML = new Date(
     location.data.time * 1000
   );
+  celciusTemperature = Math.round(location.data.temperature.current);
 }
 
 //Organize the users location information and send it to the API, then call to the function showTemperature that displays the API weather information
@@ -71,6 +79,9 @@ function currentLocation(location) {
 
   axios.get(url).then(showTemperature);
 }
+
+celciusTemperature = null;
+fahrenheitTemperature = null;
 
 //Create a function that collects current location data when the current button is clicked
 function youAreHere(event) {
