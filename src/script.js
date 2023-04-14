@@ -37,8 +37,13 @@ function showTemperature(location) {
   document.querySelector("#temp-display").innerHTML = Math.round(
     location.data.temperature.current
   );
+  let mainIcon = document.querySelector("#main-icon");
+  mainIcon.src = location.data.condition.icon_url;
   document.querySelector("#feels-like").innerHTML = Math.round(
     location.data.temperature.feels_like
+  );
+  document.querySelector("#humidity").innerHTML = Math.round(
+    location.data.temperature.humidity
   );
   document.querySelector("#wind-speed").innerHTML = Math.round(
     location.data.wind.speed
