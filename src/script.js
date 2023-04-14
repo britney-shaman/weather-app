@@ -16,11 +16,11 @@ fahrenheit.addEventListener("click", celciusFahrenheit);
 function changeCity(event) {
   event.preventDefault();
   let userInput = document.querySelector("#user-input").value;
-  let apiKey = "9eca7aac0b071aa16e3cb063adba0785";
+  let apiKey = "dob4d22a920ef88t300f64e56eab54e2";
   let inputUrl =
-    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    "https://api.shecodes.io/weather/v1/current?query=" +
     userInput +
-    "&appid=" +
+    "&key=" +
     apiKey +
     "&units=metric";
   axios.get(inputUrl).then(showTemperature);
@@ -32,20 +32,21 @@ city.addEventListener("submit", changeCity);
 
 //Create a function that formats the info from the weather API and displays it to the user
 function showTemperature(location) {
-  document.querySelector("#heading").innerHTML = location.data.name;
+  console.log(location);
+  document.querySelector("#heading").innerHTML = location.data.city;
   document.querySelector("#temp-display").innerHTML = Math.round(
-    location.data.main.temp
+    location.data.temperature.current
   );
   document.querySelector("#feels-like").innerHTML = Math.round(
-    location.data.main.feels_like
+    location.data.temperature.feels_like
   );
   document.querySelector("#wind-speed").innerHTML = Math.round(
     location.data.wind.speed
   );
   document.querySelector("#description").innerHTML =
-    location.data.weather[0].main;
+    location.data.condition.description;
   document.querySelector("#current-date").innerHTML = new Date(
-    location.data.dt * 1000
+    location.data.time * 1000
   );
 }
 
@@ -53,13 +54,13 @@ function showTemperature(location) {
 function currentLocation(location) {
   let longitude = location.coords.longitude;
   let latitude = location.coords.latitude;
-  let apiKey = "9eca7aac0b071aa16e3cb063adba0785";
+  let apiKey = "dob4d22a920ef88t300f64e56eab54e2";
   let url =
-    "https://api.openweathermap.org/data/2.5/weather?lat=" +
-    latitude +
-    "&lon=" +
+    "https://api.shecodes.io/weather/v1/current?lon=" +
     longitude +
-    "&appid=" +
+    "&lat=" +
+    latitude +
+    "&key=" +
     apiKey +
     "&units=metric";
 
