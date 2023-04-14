@@ -30,3 +30,6 @@ ul {
 .link-to-code {
   text-align: center;
 }
+#description::first-letter {
+  text-transform: capitalize;
+}
