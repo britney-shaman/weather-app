@@ -37,6 +37,50 @@ function changeCity(event) {
 let city = document.querySelector("#city-name");
 city.addEventListener("submit", changeCity);
 
+//Organize the users location information and send it to the API, then call to the function showTemperature that displays the API weather information
+function currentLocation(location) {
+  let longitude = location.coords.longitude;
+  let latitude = location.coords.latitude;
+  let apiKey = "dob4d22a920ef88t300f64e56eab54e2";
+  let url =
+    "https://api.shecodes.io/weather/v1/forecast?lon=" +
+    longitude +
+    "&lat=" +
+    latitude +
+    "&key=" +
+    apiKey +
+    "&units=metric";
+
+  axios.get(url).then(showTemperature);
+}
+
+celciusTemperature = null;
+fahrenheitTemperature = null;
+
+//Create a function that collects current location data when the current button is clicked
+function youAreHere(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(currentLocation);
+}
+
+//Create a variable for the green 'current' button and call the function showTemperature when it is clicked
+let currentButton = document.querySelector("#current-button");
+currentButton.addEventListener("click", youAreHere);
+
+//Create a function that calls to the weekly forcast API when a city is searched
+function changeCity(event) {
+  event.preventDefault();
+  let userInput = document.querySelector("#user-input").value;
+  let apiKey = "dob4d22a920ef88t300f64e56eab54e2";
+  let inputUrl =
+    "https://api.shecodes.io/weather/v1/forecast?query=" +
+    userInput +
+    "&key=" +
+    apiKey +
+    "&units=metric";
+  axios.get(inputUrl).then(showTemperature);
+}
+
 //Create a function that formats the info from the weather API and displays it to the user
 function showTemperature(location) {
   console.log(location);
@@ -64,9 +108,6 @@ function showTemperature(location) {
   );
   let mainIcon = document.querySelector("#main-icon");
   mainIcon.src = location.data.daily[0].condition.icon_url;
-  //document.querySelector("#feels-like").innerHTML = Math.round(
-  //location.data.temperature.feels_like
-  // );
   document.querySelector("#humidity").innerHTML = Math.round(
     location.data.daily[0].temperature.humidity
   );
@@ -79,48 +120,4 @@ function showTemperature(location) {
     location.data.daily[0].time * 1000
   );
   celciusTemperature = Math.round(location.data.daily[0].temperature.day);
-}
-
-//Organize the users location information and send it to the API, then call to the function showTemperature that displays the API weather information
-//function currentLocation(location) {
-// let longitude = location.coords.longitude;
-// let latitude = location.coords.latitude;
-// let apiKey = "dob4d22a920ef88t300f64e56eab54e2";
-//  let url =
-//"https://api.shecodes.io/weather/v1/current?lon=" +
-//  longitude +
-//   "&lat=" +
-// latitude +
-// "&key=" +
-// apiKey +
-// "&units=metric";
-
-// axios.get(url).then(showTemperature);
-//}
-
-celciusTemperature = null;
-fahrenheitTemperature = null;
-
-//Create a function that collects current location data when the current button is clicked
-//function youAreHere(event) {
-// event.preventDefault();
-// navigator.geolocation.getCurrentPosition(currentLocation);
-//}
-
-//Create a variable for the green 'current' button and call the function showTemperature when it is clicked
-//let currentButton = document.querySelector("#current-button");
-//currentButton.addEventListener("click", youAreHere);
-
-//Create a function that calls to the weekly forcast API when a city is searched
-function changeCity(event) {
-  event.preventDefault();
-  let userInput = document.querySelector("#user-input").value;
-  let apiKey = "dob4d22a920ef88t300f64e56eab54e2";
-  let inputUrl =
-    "https://api.shecodes.io/weather/v1/forecast?query=" +
-    userInput +
-    "&key=" +
-    apiKey +
-    "&units=metric";
-  axios.get(inputUrl).then(showTemperature);
 }
