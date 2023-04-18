@@ -1,3 +1,68 @@
+//Get the date and time information from javascript
+let date = new Date();
+let weekDay = date.getDay();
+let dayOfTheMonth = date.getDate();
+let year = date.getFullYear();
+let currentMonth = date.getMonth();
+let hour = date.getHours();
+let minutes = date.getMinutes();
+
+//Format the date using a function formatDate that returns the formatted date
+function formatDate() {
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let months = [
+    "January",
+    "Feburary",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let timeOfDay = date.toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
+  let day = days[date.getDay()];
+  let month = months[date.getMonth()];
+  let currentDate = day + ", " + month + " " + dayOfTheMonth + ", " + timeOfDay;
+  return currentDate;
+}
+//Create a variable for the date and time that the user sees on the page and replace it by the return from formatDate
+let today = document.querySelector("#current-date");
+today.innerHTML = formatDate();
+
+//Create a function that recieves the time from the API and returns the day of the week to use in the forecast
+function formatDay(time) {
+  let date = new Date(time * 1000);
+  let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  return days[day];
+}
+
 //Create a function that changes the temperature from celcius to fahrenheit when you click the fahrenheit symbol
 let fahrenheit = document.querySelector(".fahrenheitLink");
 function celciusFahrenheit(event) {
@@ -83,7 +148,24 @@ function changeCity(event) {
 
 //Create a function that formats the info from the weather API and displays it to the user
 function showTemperature(location) {
-  console.log(location);
+  document.querySelector("#tomorrow").innerHTML = formatDay(
+    location.data.daily[1].time
+  );
+  document.querySelector("#tomorrowplusone").innerHTML = formatDay(
+    location.data.daily[2].time
+  );
+  document.querySelector("#tomorrowplustwo").innerHTML = formatDay(
+    location.data.daily[3].time
+  );
+  document.querySelector("#tomorrowplusthree").innerHTML = formatDay(
+    location.data.daily[4].time
+  );
+  document.querySelector("#tomorrowplusfour").innerHTML = formatDay(
+    location.data.daily[5].time
+  );
+  document.querySelector("#tomorrowplusfive").innerHTML = formatDay(
+    location.data.daily[6].time
+  );
   document.querySelector("#day-1").innerHTML = Math.round(
     location.data.daily[1].temperature.day
   );
@@ -106,8 +188,8 @@ function showTemperature(location) {
   document.querySelector("#temp-display").innerHTML = Math.round(
     location.data.daily[0].temperature.day
   );
-  let mainIcon = document.querySelector("#main-icon");
-  mainIcon.src = location.data.daily[0].condition.icon_url;
+  document.querySelector("#main-icon").src =
+    location.data.daily[0].condition.icon_url;
   document.querySelector("#humidity").innerHTML = Math.round(
     location.data.daily[0].temperature.humidity
   );
@@ -116,8 +198,5 @@ function showTemperature(location) {
   );
   document.querySelector("#description").innerHTML =
     location.data.daily[0].condition.description;
-  document.querySelector("#current-date").innerHTML = new Date(
-    location.data.daily[0].time * 1000
-  );
   celciusTemperature = Math.round(location.data.daily[0].temperature.day);
 }
