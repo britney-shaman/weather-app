@@ -82,34 +82,34 @@ function showTemperature(location) {
 }
 
 //Organize the users location information and send it to the API, then call to the function showTemperature that displays the API weather information
-function currentLocation(location) {
-  let longitude = location.coords.longitude;
-  let latitude = location.coords.latitude;
-  let apiKey = "dob4d22a920ef88t300f64e56eab54e2";
-  let url =
-    "https://api.shecodes.io/weather/v1/current?lon=" +
-    longitude +
-    "&lat=" +
-    latitude +
-    "&key=" +
-    apiKey +
-    "&units=metric";
+//function currentLocation(location) {
+// let longitude = location.coords.longitude;
+// let latitude = location.coords.latitude;
+// let apiKey = "dob4d22a920ef88t300f64e56eab54e2";
+//  let url =
+//"https://api.shecodes.io/weather/v1/current?lon=" +
+//  longitude +
+//   "&lat=" +
+// latitude +
+// "&key=" +
+// apiKey +
+// "&units=metric";
 
-  axios.get(url).then(showTemperature);
-}
+// axios.get(url).then(showTemperature);
+//}
 
 celciusTemperature = null;
 fahrenheitTemperature = null;
 
 //Create a function that collects current location data when the current button is clicked
-function youAreHere(event) {
-  event.preventDefault();
-  navigator.geolocation.getCurrentPosition(currentLocation);
-}
+//function youAreHere(event) {
+// event.preventDefault();
+// navigator.geolocation.getCurrentPosition(currentLocation);
+//}
 
 //Create a variable for the green 'current' button and call the function showTemperature when it is clicked
-let currentButton = document.querySelector("#current-button");
-currentButton.addEventListener("click", youAreHere);
+//let currentButton = document.querySelector("#current-button");
+//currentButton.addEventListener("click", youAreHere);
 
 //Create a function that calls to the weekly forcast API when a city is searched
 function changeCity(event) {
